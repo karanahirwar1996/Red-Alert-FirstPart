@@ -113,10 +113,10 @@ def stock_details(url):
                 password = "uccrgtqdnusrpmnk"
 
                 table_html = under2000[["ISIN",'Name', 'Price','52 Week Low','52 Week High', 'Week Return', 'New_URL']].to_html(index=False)
-                if financial == None:
-                      financial_html = None
+                if financial is None:
+                            financial_html = None
                 else:
-                      financial_html = financial.to_html(index=False)
+                            financial_html = financial.to_html(index=False)
 
                 message = MIMEText(f"""
 <html>
