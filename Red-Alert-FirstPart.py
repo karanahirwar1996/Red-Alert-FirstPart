@@ -113,7 +113,10 @@ def stock_details(url):
                 password = "uccrgtqdnusrpmnk"
 
                 table_html = under2000[["ISIN",'Name', 'Price','52 Week Low','52 Week High', 'Week Return', 'New_URL']].to_html(index=False)
-
+                if not financial.empty:
+                    financial_html = financial.to_html(index=False)
+                else:
+                    None
                 message = MIMEText(f"""
 <html>
   <head>
@@ -160,7 +163,7 @@ def stock_details(url):
     <p>Additionally, I would like to inform you that there have been positive news articles related to {under2000['Name'].values[0]} in the past two days. This suggests that there might be an increased chance of the stock prices rising. Here are the details of the positive news articles:</p>
     {news_table_html}
     <p>Here are the fiscal year details for {under2000['Name'].values[0]}:</p>
-    {financial.to_html(index=False)}
+    {financial_html}
     <p>Best regards,<br>Karan Ahirwar</p>
   </body>
 </html>
