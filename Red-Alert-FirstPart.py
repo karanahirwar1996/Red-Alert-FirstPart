@@ -178,13 +178,13 @@ def stock_details(url):
 
     return df
 
-url_df=pd.read_csv("./stockurl.csv")
-url_list=list(url_df['URL'])[0:800]
+url_df=pd.read_csv("./Allstockurl.csv")
+url_list=list(url_df['URL'])[0:750]
 df_list = []
 for i, url in enumerate(url_list):
     df1 = stock_details(url)
     df_list.append(df1)
-    if (i + 1) % 450 ==0:
+    if (i + 1) % 400 ==0:
         print(f"Processed {i + 1} URLs. Sleeping for 3 seconds...")
         time.sleep(3)
 result_df = pd.concat(df_list,ignore_index=True)
