@@ -76,7 +76,7 @@ def stock_details(url):
     date_today = datetime.date.today().strftime('%Y-%m-%d')
     data = {'Date': date_today, 'Name': name, 'ISIN': isin, 'Sector': sector, '52 Week High': _52whigh, '52 Week Low': _52wlow, 'Day Return': change, 'Week Return': wk, 'Price': price, "URL": url}
     df = pd.DataFrame(data, index=[0])
-    under2000 = df.loc[(df['Price'] < 2000)]
+    under2000 = df.loc[(df['Week Return'] > 2)&(df['Price'] < 2000)]
     under2000['New_URL'] = under2000['URL'].apply(short_link)
     if len(under2000) > 0:
         res = requests.get(under2000['URL'][0])
